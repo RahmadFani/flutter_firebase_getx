@@ -36,6 +36,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   freezed_annotation: any
   get: ^4.5.1
+  firebase_core: ^1.10.5
+  get_storage: ^2.0.3
+  firebase_auth: ^3.3.3
 
 dev_dependencies:
   flutter_test:

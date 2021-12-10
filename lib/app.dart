@@ -12,7 +12,7 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       initialRoute: Routes.INITIAL,
       getPages: AppPages.pages,
