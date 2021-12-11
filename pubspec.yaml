@@ -53,6 +53,7 @@ dev_dependencies:
   build_runner: any
   freezed: any
   json_serializable: any
+  flutter_keyboard_visibility: ^5.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
