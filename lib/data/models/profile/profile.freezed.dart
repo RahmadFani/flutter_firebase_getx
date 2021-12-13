@@ -2,7 +2,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'user.dart';
+part of 'profile.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,8 +14,8 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-class _$UserTearOff {
-  const _$UserTearOff();
+class _$ProfileTearOff {
+  const _$ProfileTearOff();
 
   Data call(
       {required String id,
@@ -44,10 +44,10 @@ class _$UserTearOff {
 }
 
 /// @nodoc
-const $User = _$UserTearOff();
+const $Profile = _$ProfileTearOff();
 
 /// @nodoc
-mixin _$User {
+mixin _$Profile {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
     TResult Function(String id, String? email, String? name, String? photo,
@@ -101,18 +101,18 @@ mixin _$User {
 }
 
 /// @nodoc
-abstract class $UserCopyWith<$Res> {
-  factory $UserCopyWith(User value, $Res Function(User) then) =
-      _$UserCopyWithImpl<$Res>;
+abstract class $ProfileCopyWith<$Res> {
+  factory $ProfileCopyWith(Profile value, $Res Function(Profile) then) =
+      _$ProfileCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
-  _$UserCopyWithImpl(this._value, this._then);
+class _$ProfileCopyWithImpl<$Res> implements $ProfileCopyWith<$Res> {
+  _$ProfileCopyWithImpl(this._value, this._then);
 
-  final User _value;
+  final Profile _value;
   // ignore: unused_field
-  final $Res Function(User) _then;
+  final $Res Function(Profile) _then;
 }
 
 /// @nodoc
@@ -128,7 +128,7 @@ abstract class $DataCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DataCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
+class _$DataCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
     implements $DataCopyWith<$Res> {
   _$DataCopyWithImpl(Data _value, $Res Function(Data) _then)
       : super(_value, (v) => _then(v as Data));
@@ -188,14 +188,14 @@ class _$Data with DiagnosticableTreeMixin implements Data {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User(id: $id, email: $email, name: $name, photo: $photo, channels: $channels)';
+    return 'Profile(id: $id, email: $email, name: $name, photo: $photo, channels: $channels)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'User'))
+      ..add(DiagnosticsProperty('type', 'Profile'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('name', name))
@@ -304,7 +304,7 @@ class _$Data with DiagnosticableTreeMixin implements Data {
   }
 }
 
-abstract class Data implements User {
+abstract class Data implements Profile {
   const factory Data(
       {required String id,
       String? email,
@@ -328,7 +328,7 @@ abstract class $EmptyCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$EmptyCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
+class _$EmptyCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
     implements $EmptyCopyWith<$Res> {
   _$EmptyCopyWithImpl(Empty _value, $Res Function(Empty) _then)
       : super(_value, (v) => _then(v as Empty));
@@ -344,13 +344,13 @@ class _$Empty with DiagnosticableTreeMixin implements Empty {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User.empty()';
+    return 'Profile.empty()';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties..add(DiagnosticsProperty('type', 'User.empty'));
+    properties..add(DiagnosticsProperty('type', 'Profile.empty'));
   }
 
   @override
@@ -437,7 +437,7 @@ class _$Empty with DiagnosticableTreeMixin implements Empty {
   }
 }
 
-abstract class Empty implements User {
+abstract class Empty implements Profile {
   const factory Empty() = _$Empty;
 }
 
@@ -450,7 +450,7 @@ abstract class $ErrorDetailsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ErrorDetailsCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
+class _$ErrorDetailsCopyWithImpl<$Res> extends _$ProfileCopyWithImpl<$Res>
     implements $ErrorDetailsCopyWith<$Res> {
   _$ErrorDetailsCopyWithImpl(
       ErrorDetails _value, $Res Function(ErrorDetails) _then)
@@ -482,14 +482,14 @@ class _$ErrorDetails with DiagnosticableTreeMixin implements ErrorDetails {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'User.error(message: $message)';
+    return 'Profile.error(message: $message)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'User.error'))
+      ..add(DiagnosticsProperty('type', 'Profile.error'))
       ..add(DiagnosticsProperty('message', message));
   }
 
@@ -585,7 +585,7 @@ class _$ErrorDetails with DiagnosticableTreeMixin implements ErrorDetails {
   }
 }
 
-abstract class ErrorDetails implements User {
+abstract class ErrorDetails implements Profile {
   const factory ErrorDetails([String? message]) = _$ErrorDetails;
 
   String? get message;

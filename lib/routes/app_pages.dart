@@ -4,7 +4,9 @@ import 'package:flutter_getx_starterpack/modules/auth_register_module/page.dart'
 import 'package:flutter_getx_starterpack/modules/home_module/page.dart';
 import 'package:flutter_getx_starterpack/modules/auth_login_module/controller.dart';
 import 'package:flutter_getx_starterpack/modules/auth_login_module/page.dart';
-import 'package:flutter_getx_starterpack/modules/splash_screen_module.dart/page.dart';
+import 'package:flutter_getx_starterpack/modules/profile_create_module/controller.dart';
+import 'package:flutter_getx_starterpack/modules/profile_create_module/page.dart';
+import 'package:flutter_getx_starterpack/modules/splash_screen_module/page.dart';
 import 'package:get/get.dart';
 part './app_routes.dart';
 
@@ -28,6 +30,10 @@ abstract class AppPages {
     GetPage(
       name: Routes.HOME,
       page: () => const HomePage(),
-    )
+    ),
+    GetPage(
+        name: Routes.PROFILE_CREATE,
+        page: () => const ProfileCreatePage(),
+        binding: BindingsBuilder.put(() => ProfileCreateController()))
   ];
 }

@@ -40,6 +40,8 @@ class DefaultFirebaseOptions {
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyDDBGqGFiXEWdLOMt52onLhvMagIguwiB4',
     appId: '1:841264048456:web:7e3e4276c7be01128d2b7d',
+    databaseURL:
+        "https://eventproject-e7d6c-default-rtdb.asia-southeast1.firebasedatabase.app",
     messagingSenderId: '841264048456',
     projectId: 'eventproject-e7d6c',
     authDomain: 'eventproject-e7d6c.firebaseapp.com',
@@ -50,6 +52,8 @@ class DefaultFirebaseOptions {
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCg6rfyITzV8rDB4fi_l-Zp5sgy2xRC8FY',
     appId: '1:841264048456:android:45901dc44d0f12d28d2b7d',
+    databaseURL:
+        "https://eventproject-e7d6c-default-rtdb.asia-southeast1.firebasedatabase.app",
     messagingSenderId: '841264048456',
     projectId: 'eventproject-e7d6c',
     storageBucket: 'eventproject-e7d6c.appspot.com',
@@ -58,10 +62,13 @@ class DefaultFirebaseOptions {
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyDLeLlQORfrizmZsLtyUG0YGaiTwQ5r-Qc',
     appId: '1:841264048456:ios:33208a5f2a51952b8d2b7d',
+    databaseURL:
+        "https://eventproject-e7d6c-default-rtdb.asia-southeast1.firebasedatabase.app",
     messagingSenderId: '841264048456',
     projectId: 'eventproject-e7d6c',
     storageBucket: 'eventproject-e7d6c.appspot.com',
-    iosClientId: '841264048456-celifhdbb6idv809ok9tehm6i3djoh93.apps.googleusercontent.com',
+    iosClientId:
+        '841264048456-celifhdbb6idv809ok9tehm6i3djoh93.apps.googleusercontent.com',
     iosBundleId: 'com.eventproject.app',
   );
 }

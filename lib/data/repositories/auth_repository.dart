@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter_getx_starterpack/data/models/user/user.dart';
+import 'package:get_storage/get_storage.dart' as get_storage;
 
 class AuthRepository {
   AuthRepository({
@@ -8,11 +9,15 @@ class AuthRepository {
 
   final firebase_auth.FirebaseAuth _firebaseAuth;
 
+  final box = get_storage.GetStorage();
+
   Stream<User> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
-      final user =
+      User user =
           firebaseUser == null ? const User.empty() : firebaseUser.toUser;
-
+      if (user is Data) {
+        box.write('user_id', user.id);
+      }
       return user;
     });
   }
