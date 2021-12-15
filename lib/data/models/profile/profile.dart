@@ -6,8 +6,7 @@ part 'profile.freezed.dart';
 class Profile with _$Profile {
   const factory Profile(
       {required String id,
-      String? email,
-      String? name,
+      String? nickname,
       String? photo,
       List<String>? channels}) = Data;
   const factory Profile.empty() = Empty;
