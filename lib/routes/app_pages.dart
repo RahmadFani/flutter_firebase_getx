@@ -1,6 +1,7 @@
 import 'package:flutter_getx_starterpack/data/repositories/auth_repository.dart';
 import 'package:flutter_getx_starterpack/modules/auth_register_module/controller.dart';
 import 'package:flutter_getx_starterpack/modules/auth_register_module/page.dart';
+import 'package:flutter_getx_starterpack/modules/home_module/controller.dart';
 import 'package:flutter_getx_starterpack/modules/home_module/page.dart';
 import 'package:flutter_getx_starterpack/modules/auth_login_module/controller.dart';
 import 'package:flutter_getx_starterpack/modules/auth_login_module/page.dart';
@@ -28,9 +29,9 @@ abstract class AppPages {
         page: () => const RegisterPage(),
         binding: BindingsBuilder.put(() => RegisterController())),
     GetPage(
-      name: Routes.HOME,
-      page: () => const HomePage(),
-    ),
+        name: Routes.HOME,
+        page: () => const HomePage(),
+        binding: BindingsBuilder.put(() => HomeController())),
     GetPage(
         name: Routes.PROFILE_CREATE,
         page: () => const ProfileCreatePage(),

@@ -63,6 +63,9 @@ extension on DocumentSnapshot {
 
   Profile get toProfile {
     return Profile(
-        id: id, nickname: json['nickname'], channels: json['channels']);
+        id: id,
+        nickname: json['nickname'],
+        channels: json['channels'],
+        avatar: json['avatar']);
   }
 }

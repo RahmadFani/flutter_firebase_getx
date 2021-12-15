@@ -32,7 +32,6 @@ class ProfileCreateController extends GetxController {
 
   void pickAvatar() async {
     final ImagePicker _picker = ImagePicker();
-
     final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
     if (image != null) {
       avatar = File(image.path);
@@ -44,7 +43,6 @@ class ProfileCreateController extends GetxController {
     try {
       await _repository.saveUserProfile(
           nickname: nickname.text, avatar: avatar);
-
       Get.offAndToNamed(Routes.HOME);
     } catch (e) {
       Get.log(e.toString());
@@ -55,6 +53,7 @@ class ProfileCreateController extends GetxController {
   void get continueWithoutAvatar async {
     try {
       await _repository.saveUserProfile(nickname: nickname.text);
+      Get.offAndToNamed(Routes.HOME);
     } catch (e) {
       throw 'e';
     }

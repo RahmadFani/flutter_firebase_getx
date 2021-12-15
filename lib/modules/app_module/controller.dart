@@ -1,7 +1,4 @@
 import 'dart:async';
-
-import 'package:flutter_getx_starterpack/data/models/profile/profile.dart'
-    as profile_model;
 import 'package:flutter_getx_starterpack/data/models/user/user.dart';
 import 'package:flutter_getx_starterpack/data/repositories/auth_repository.dart';
 import 'package:flutter_getx_starterpack/data/repositories/profile_repository.dart';
@@ -12,12 +9,11 @@ class AppController extends GetxController {
   Rx<User> currentUser = const User.empty().obs;
 
   final AuthRepository _repository;
-  final ProfileRepository _profileRepository;
+
   AppController(
       {required AuthRepository repository,
       ProfileRepository? profileRepository})
-      : _repository = repository,
-        _profileRepository = profileRepository ?? ProfileRepository() {
+      : _repository = repository {
     /// adding subscription if u need stream auth
     _subscription = _repository.user.listen((event) {
       appUserChanged(event);
@@ -31,13 +27,7 @@ class AppController extends GetxController {
       Get.offAndToNamed(Routes.LOGIN);
     } else if (user is Data) {
       currentUser = user.obs;
-      Get.log('test snapshot');
-      profile_model.Profile profile = await _profileRepository.getUserProfile;
-      if (profile is profile_model.Empty) {
-        Get.offAndToNamed(Routes.PROFILE_CREATE);
-      } else {
-        Get.offAndToNamed(Routes.HOME);
-      }
+      Get.offAndToNamed(Routes.HOME);
     }
   }
 

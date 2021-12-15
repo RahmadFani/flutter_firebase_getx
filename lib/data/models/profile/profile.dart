@@ -7,7 +7,7 @@ class Profile with _$Profile {
   const factory Profile(
       {required String id,
       String? nickname,
-      String? photo,
+      String? avatar,
       List<String>? channels}) = Data;
   const factory Profile.empty() = Empty;
   const factory Profile.error([String? message]) = ErrorDetails;
