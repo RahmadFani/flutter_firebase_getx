@@ -46,10 +46,13 @@ class ProfileCreatePhone extends GetView<ProfileCreateController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LottieBuilder.asset(
-              'assets/lottiefiles/airplane.json',
-              height: 200,
-              width: 200,
+            Hero(
+              tag: 'airplane',
+              child: LottieBuilder.asset(
+                'assets/lottiefiles/airplane.json',
+                height: 200,
+                width: 200,
+              ),
             ),
             const SizedBox(
               height: 40,

@@ -65,7 +65,7 @@ extension on DocumentSnapshot {
     return Profile(
         id: id,
         nickname: json['nickname'],
-        channels: json['channels'],
+        channels: json['channels'] ?? [],
         avatar: json['avatar']);
   }
 }

@@ -15,7 +15,12 @@ class App extends StatelessWidget {
         primarySwatch: Colors.green,
       ),
       initialRoute: Routes.INITIAL,
-      getPages: AppPages.pages,
+      getPages: [
+        ...AppPages.pages,
+        ...AppPages.authPages,
+        ...AppPages.profilPages,
+        ...AppPages.channelPages
+      ],
       initialBinding: AppBinding(),
     );
   }
