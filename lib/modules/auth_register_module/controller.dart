@@ -13,12 +13,18 @@ class RegisterController extends GetxController {
 
   final GlobalKey<FormState> formState = GlobalKey<FormState>();
 
-  Future<void> get register async {
+  void registerWithEmailAndPassword() async {
+    FocusScope.of(Get.overlayContext!).unfocus();
+    if (!formState.currentState!.validate()) return;
+
     try {
       await _repository.createUserWithEmailAndPassword(
           email: email.text, password: password.text);
     } catch (e) {
-      throw e.toString();
+      Get.showSnackbar(GetSnackBar(
+        duration: const Duration(seconds: 2),
+        message: e.toString(),
+      ));
     }
   }
 

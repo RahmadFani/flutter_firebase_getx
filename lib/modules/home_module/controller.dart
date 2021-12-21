@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter_getx_starterpack/data/models/channel/channel.dart'
     as channel_model;
 import 'package:flutter_getx_starterpack/data/models/profile/profile.dart'

@@ -64,21 +64,6 @@ class LoginPage extends StatelessWidget {
 class LoginForm extends GetView<LoginController> {
   const LoginForm({Key? key}) : super(key: key);
 
-  void _loginWithEmailAndPassword() async {
-    FocusScope.of(Get.overlayContext!).unfocus();
-    if (!controller.formState.currentState!.validate()) return;
-    try {
-      await controller.loginWithEmailAndPassword;
-    } catch (e) {
-      Get.showSnackbar(GetSnackBar(
-        duration: const Duration(seconds: 2),
-        message: e.toString(),
-      ));
-    }
-  }
-
-  void _forgotPassword() {}
-
   @override
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(
@@ -136,7 +121,7 @@ class LoginForm extends GetView<LoginController> {
                     controller: controller.password,
                     obscureText: true,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    onEditingComplete: _loginWithEmailAndPassword,
+                    onEditingComplete: controller.loginWithEmailAndPassword,
                     validator: (text) {
                       if (text!.isEmpty) return 'Password is required.';
 
@@ -156,7 +141,7 @@ class LoginForm extends GetView<LoginController> {
                         height: 20,
                       ),
                       GestureDetector(
-                        onTap: _forgotPassword,
+                        onTap: controller.forgotPassword,
                         child: SizedBox(
                           child: Align(
                             alignment: Alignment.centerRight,
@@ -182,7 +167,7 @@ class LoginForm extends GetView<LoginController> {
                                     RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10)))),
-                            onPressed: _loginWithEmailAndPassword,
+                            onPressed: controller.loginWithEmailAndPassword,
                             child: const Text(
                               'SIGN IN',
                               style: TextStyle(

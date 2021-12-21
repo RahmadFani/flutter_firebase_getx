@@ -1,6 +1,7 @@
 import 'package:flutter_getx_starterpack/data/repositories/auth_repository.dart';
 import 'package:flutter_getx_starterpack/modules/auth_register_module/controller.dart';
 import 'package:flutter_getx_starterpack/modules/auth_register_module/page.dart';
+import 'package:flutter_getx_starterpack/modules/channel_create_module/controller.dart';
 import 'package:flutter_getx_starterpack/modules/channel_create_module/page.dart';
 import 'package:flutter_getx_starterpack/modules/home_module/controller.dart';
 import 'package:flutter_getx_starterpack/modules/home_module/page.dart';
@@ -59,9 +60,9 @@ abstract class AppPages {
   ///
   static final channelPages = [
     GetPage(
-      name: Routes.CHANNEL_CREATE,
-      transition: Transition.cupertino,
-      page: () => const ChannelCreatePage(),
-    ),
+        name: Routes.CHANNEL_CREATE,
+        transition: Transition.topLevel,
+        page: () => const ChannelCreatePage(),
+        binding: BindingsBuilder.put(() => ChannelCreateController())),
   ];
 }

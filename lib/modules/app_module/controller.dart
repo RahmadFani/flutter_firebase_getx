@@ -24,10 +24,10 @@ class AppController extends GetxController {
 
   void appUserChanged(User user) async {
     if (user is Empty) {
-      Get.offAndToNamed(Routes.LOGIN);
+      Get.offAllNamed(Routes.LOGIN);
     } else if (user is Data) {
       currentUser = user.obs;
-      Get.offAndToNamed(Routes.HOME);
+      Get.offAllNamed(Routes.HOME);
     }
   }
 

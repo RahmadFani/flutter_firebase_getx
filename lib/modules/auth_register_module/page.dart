@@ -64,19 +64,6 @@ class RegisterPage extends StatelessWidget {
 class RegisterForm extends GetView<RegisterController> {
   const RegisterForm({Key? key}) : super(key: key);
 
-  void _registerWithEmailAndPassword() async {
-    FocusScope.of(Get.overlayContext!).unfocus();
-    if (!controller.formState.currentState!.validate()) return;
-    try {
-      await controller.register;
-    } catch (e) {
-      Get.showSnackbar(GetSnackBar(
-        duration: const Duration(seconds: 2),
-        message: e.toString(),
-      ));
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(
@@ -153,7 +140,7 @@ class RegisterForm extends GetView<RegisterController> {
                     controller: controller.rePassword,
                     obscureText: true,
                     autovalidateMode: AutovalidateMode.onUserInteraction,
-                    onEditingComplete: _registerWithEmailAndPassword,
+                    onEditingComplete: controller.registerWithEmailAndPassword,
                     validator: (text) {
                       if (text != controller.password.text) {
                         return 'Confirm password must be same as password.';
@@ -180,7 +167,7 @@ class RegisterForm extends GetView<RegisterController> {
                                     RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(10)))),
-                            onPressed: _registerWithEmailAndPassword,
+                            onPressed: controller.registerWithEmailAndPassword,
                             child: const Text(
                               'REGISTER',
                               style: TextStyle(

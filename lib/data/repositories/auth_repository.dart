@@ -28,7 +28,7 @@ class AuthRepository {
       await _firebaseAuth.signInWithEmailAndPassword(
           email: email, password: password);
     } catch (e) {
-      throw 'Error';
+      throw 'Invalid Username Or Password';
     }
   }
 

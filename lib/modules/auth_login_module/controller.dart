@@ -18,14 +18,22 @@ class LoginController extends GetxController {
     password = TextEditingController();
   }
 
-  Future<void> get loginWithEmailAndPassword async {
+  void loginWithEmailAndPassword() async {
+    FocusScope.of(Get.overlayContext!).unfocus();
+    if (!formState.currentState!.validate()) return;
+
     try {
       await repository.loginWithEmailAndPassword(
           email: email.text, password: password.text);
     } catch (e) {
-      throw 'Invalid username or password.';
+      Get.showSnackbar(GetSnackBar(
+        duration: const Duration(seconds: 2),
+        message: e.toString(),
+      ));
     }
   }
+
+  void forgotPassword() {}
 
   @override
   void dispose() {
