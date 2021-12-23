@@ -72,7 +72,9 @@ extension on DocumentSnapshot {
     return Profile(
         id: id,
         nickname: json['nickname'],
-        channels: json['channels'] ?? [],
+        channels: json['channels'] != null
+            ? (json['channels'] as List).map((e) => e as String).toList()
+            : [],
         avatar: json['avatar']);
   }
 }

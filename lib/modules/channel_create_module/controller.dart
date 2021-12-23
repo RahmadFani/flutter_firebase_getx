@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_getx_starterpack/data/repositories/channel_repository.dart';
+import 'package:flutter_getx_starterpack/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -65,6 +66,7 @@ class ChannelCreateController extends GetxController {
     try {
       await _channelRepository.createChannel(
           name: nameServer.text, type: typeServer, image: avatar);
+      Get.offNamedUntil(Routes.HOME, (route) => false);
     } catch (e) {
       Get.log(e.toString());
       throw 'e';
@@ -77,8 +79,10 @@ class ChannelCreateController extends GetxController {
         name: nameServer.text,
         type: typeServer,
       );
+      Get.offNamedUntil(Routes.HOME, (route) => false);
     } catch (e) {
-      throw 'e';
+      Get.log('ERROR CHANNELS');
+      Get.log(e.toString());
     }
   }
 }

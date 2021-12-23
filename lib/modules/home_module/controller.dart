@@ -23,7 +23,7 @@ class HomeController extends GetxController {
   final ChannelRepository _channelRepository;
 
   Rx<profile_model.Profile> profile = const profile_model.Profile.empty().obs;
-  List<channel_model.Data> channels = [];
+  List<channel_model.Channel> channels = [];
 
   void getUserProfile(profile_model.Profile userProfile) async {
     if (userProfile is profile_model.Empty) {
@@ -42,7 +42,7 @@ class HomeController extends GetxController {
     if (myProfile.channels!.isNotEmpty) {
       List<channel_model.Channel> list =
           await _channelRepository.getUserChannel(list: myProfile.channels!);
-      channels = list as List<channel_model.Data>;
+      channels = list;
       update(['channels']);
     }
   }
