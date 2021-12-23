@@ -6,6 +6,7 @@ import 'package:flutter_getx_starterpack/values/sizedbox.dart';
 import 'package:flutter_getx_starterpack/values/text_style.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 part 'widgets/input_form.dart';
 part 'widgets/image_form.dart';

@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_getx_starterpack/data/repositories/channel_repository.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ChannelCreateController extends GetxController {
   final ChannelRepository _channelRepository;
@@ -11,6 +14,8 @@ class ChannelCreateController extends GetxController {
 
   String typeServer = '';
   late TextEditingController nameServer;
+
+  File? avatar;
 
   @override
   void onInit() {
@@ -40,5 +45,40 @@ class ChannelCreateController extends GetxController {
       return;
     }
     pageController.nextPage(duration: 500.milliseconds, curve: Curves.easeIn);
+  }
+
+  void get previousPage {
+    pageController.previousPage(
+        duration: const Duration(milliseconds: 250), curve: Curves.easeOut);
+  }
+
+  void pickAvatar() async {
+    final ImagePicker _picker = ImagePicker();
+    final XFile? image = await _picker.pickImage(source: ImageSource.gallery);
+    if (image != null) {
+      avatar = File(image.path);
+      update();
+    }
+  }
+
+  void get continueWithAvatar async {
+    try {
+      await _channelRepository.createChannel(
+          name: nameServer.text, type: typeServer, image: avatar);
+    } catch (e) {
+      Get.log(e.toString());
+      throw 'e';
+    }
+  }
+
+  void get continueWithoutAvatar async {
+    try {
+      await _channelRepository.createChannel(
+        name: nameServer.text,
+        type: typeServer,
+      );
+    } catch (e) {
+      throw 'e';
+    }
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_getx_starterpack/data/models/channel/channel.dart';
 import 'package:get_storage/get_storage.dart' as get_storage;
@@ -16,6 +18,12 @@ class ChannelRepository {
     final docs = query.docChanges;
     return docs.map((e) => e.doc.toChannel).toList();
   }
+
+  Future<void> createChannel({
+    required String name,
+    required String type,
+    File? image,
+  }) async {}
 }
 
 extension on DocumentSnapshot {

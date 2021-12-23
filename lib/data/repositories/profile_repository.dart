@@ -16,6 +16,13 @@ class ProfileRepository {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
+  Stream<Profile> get streamUserProfile {
+    String userId = box.read('user_id');
+    return _firebaseFirestore.collection('users').doc(userId).snapshots().map(
+        (snapshot) =>
+            snapshot.exists ? snapshot.toProfile : const Profile.empty());
+  }
+
   Future<Profile> get getUserProfile async {
     try {
       String userId = box.read('user_id');

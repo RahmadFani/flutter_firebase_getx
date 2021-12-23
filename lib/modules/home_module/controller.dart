@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_getx_starterpack/data/models/channel/channel.dart'
     as channel_model;
 import 'package:flutter_getx_starterpack/data/models/profile/profile.dart'
@@ -8,32 +10,28 @@ import 'package:flutter_getx_starterpack/routes/app_pages.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  final ProfileRepository _repository;
-  final ChannelRepository _channelRepository;
   HomeController(
       {ProfileRepository? repository, ChannelRepository? channelRepository})
       : _repository = repository ?? ProfileRepository(),
         _channelRepository = channelRepository ?? ChannelRepository() {
-    getUserProfile();
+    _profileSubscribtion =
+        _repository.streamUserProfile.listen((event) => getUserProfile(event));
   }
 
-  Rx<profile_model.Profile> profile = const profile_model.Profile.empty().obs;
-  List<channel_model.Channel> channels = [];
+  late final StreamSubscription _profileSubscribtion;
+  final ProfileRepository _repository;
+  final ChannelRepository _channelRepository;
 
-  void getUserProfile() async {
-    try {
-      final profile_model.Profile userProfile =
-          await _repository.getUserProfile;
-      if (userProfile is profile_model.Empty) {
-        Get.offAndToNamed(Routes.PROFILE_CREATE);
-      }
-      if (userProfile is profile_model.Data) {
-        profile = userProfile.obs;
-        _getUserChannels();
-      }
-    } catch (e) {
-      throw 'Error';
-    } finally {
+  Rx<profile_model.Profile> profile = const profile_model.Profile.empty().obs;
+  List<channel_model.Data> channels = [];
+
+  void getUserProfile(profile_model.Profile userProfile) async {
+    if (userProfile is profile_model.Empty) {
+      Get.offAndToNamed(Routes.PROFILE_CREATE);
+    }
+    if (userProfile is profile_model.Data) {
+      profile = userProfile.obs;
+      _getUserChannels();
       update();
     }
   }
@@ -44,8 +42,14 @@ class HomeController extends GetxController {
     if (myProfile.channels!.isNotEmpty) {
       List<channel_model.Channel> list =
           await _channelRepository.getUserChannel(list: myProfile.channels!);
-      channels = list;
+      channels = list as List<channel_model.Data>;
       update(['channels']);
     }
+  }
+
+  @override
+  void dispose() {
+    _profileSubscribtion.cancel();
+    super.dispose();
   }
 }
