@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_starterpack/data/models/profile/profile.dart';
+import 'package:flutter_getx_starterpack/data/models/channel/channel.dart'
+    as channel_model;
+import 'package:flutter_getx_starterpack/data/models/profile/profile.dart'
+    as profile_model;
+import 'package:flutter_getx_starterpack/modules/app_module/controller.dart';
 import 'package:flutter_getx_starterpack/modules/home_module/controller.dart';
 import 'package:flutter_getx_starterpack/modules/home_module/widgets/splash_home.dart';
 import 'package:flutter_getx_starterpack/routes/app_pages.dart';
 import 'package:flutter_getx_starterpack/values/text_style.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
+
+part 'widgets/empty_channels_profile.dart';
+part 'widgets/home_drawer.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
@@ -15,98 +22,31 @@ class HomePage extends GetView<HomeController> {
     return GetBuilder(
         init: controller,
         builder: (_) {
-          if (controller.profile.value is Data) {
-            Data profile = controller.profile.value as Data;
-            return Scaffold(
-              body: Stack(
-                children: [
-                  SafeArea(
-                    child: Container(
-                      constraints: const BoxConstraints.expand(),
-                      child: Text(profile.nickname!),
-                    ),
-                  ),
-                  if (profile.channels!.isEmpty)
-                    SafeArea(
-                        child: Container(
-                      color: Colors.white,
-                      constraints: const BoxConstraints.expand(),
-                      padding: const EdgeInsets.symmetric(horizontal: 50),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            'Hi, ${profile.nickname!}',
-                            textAlign: TextAlign.center,
-                            style:
-                                headingOneText(color: Get.theme.primaryColor),
-                          ),
-                          Text(
-                            'Choose your server',
-                            textAlign: TextAlign.center,
-                            style:
-                                headingOneText(color: Get.theme.primaryColor),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          Lottie.asset('assets/lottiefiles/world_green.json',
-                              width: 180, height: 180),
-                          const SizedBox(
-                            height: 35,
-                          ),
-                          SizedBox(
-                            height: 65,
-                            width: context.width,
-                            child: ElevatedButton(
-                                style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                        Get.theme.primaryColor),
-                                    shape: MaterialStateProperty.all(
-                                        RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30)))),
-                                onPressed: () {},
-                                child: const Text(
-                                  'JOIN SERVER',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20),
-                                )),
-                          ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          SizedBox(
-                            height: 65,
-                            width: context.width,
-                            child: ElevatedButton(
-                                style: ButtonStyle(
-                                    backgroundColor:
-                                        MaterialStateProperty.all(Colors.white),
-                                    shape: MaterialStateProperty.all(
-                                        RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(30)))),
-                                onPressed: () =>
-                                    Get.toNamed(Routes.CHANNEL_CREATE),
-                                child: Text(
-                                  'CREATE SERVER',
-                                  style: TextStyle(
-                                      color: Get.theme.primaryColor,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20),
-                                )),
-                          ),
-                        ],
-                      ),
-                    ))
-                ],
-              ),
+          if (controller.profile.value is profile_model.Data) {
+            profile_model.Data profile =
+                controller.profile.value as profile_model.Data;
+            return Stack(
+              children: [
+                _homeBody,
+                if (profile.channels!.isEmpty) const EmptyChnnelsProfile()
+              ],
             );
           }
           return const SplashHomeWidget();
         });
+  }
+
+  Widget get _homeBody {
+    profile_model.Data profile = controller.profile.value as profile_model.Data;
+    return Scaffold(
+      appBar: AppBar(centerTitle: true, title: const Text('Home')),
+      drawer: const HomeDrawer(),
+      body: SafeArea(
+        child: Container(
+          constraints: const BoxConstraints.expand(),
+          child: Center(child: Text(profile.nickname!)),
+        ),
+      ),
+    );
   }
 }
