@@ -75,9 +75,6 @@ extension on DocumentSnapshot {
 
   Channel get toChannel {
     return Channel(
-      id: id,
-      name: json['name'],
-      type: json['type'],
-    );
+        id: id, name: json['name'], type: json['type'], image: json['image']);
   }
 }

@@ -18,11 +18,16 @@ class _$ChannelTearOff {
   const _$ChannelTearOff();
 
   Data call(
-      {required String id, String? name, String? type, List<String>? roles}) {
+      {required String id,
+      String? name,
+      String? type,
+      String? image,
+      List<String>? roles}) {
     return Data(
       id: id,
       name: name,
       type: type,
+      image: image,
       roles: roles,
     );
   }
@@ -45,7 +50,8 @@ const $Channel = _$ChannelTearOff();
 mixin _$Channel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String? name, String? type, List<String>? roles)
+    TResult Function(String id, String? name, String? type, String? image,
+            List<String>? roles)
         $default, {
     required TResult Function() empty,
     required TResult Function(String? message) error,
@@ -53,8 +59,8 @@ mixin _$Channel {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(
-            String id, String? name, String? type, List<String>? roles)?
+    TResult Function(String id, String? name, String? type, String? image,
+            List<String>? roles)?
         $default, {
     TResult Function()? empty,
     TResult Function(String? message)? error,
@@ -62,8 +68,8 @@ mixin _$Channel {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            String id, String? name, String? type, List<String>? roles)?
+    TResult Function(String id, String? name, String? type, String? image,
+            List<String>? roles)?
         $default, {
     TResult Function()? empty,
     TResult Function(String? message)? error,
@@ -113,7 +119,12 @@ class _$ChannelCopyWithImpl<$Res> implements $ChannelCopyWith<$Res> {
 abstract class $DataCopyWith<$Res> {
   factory $DataCopyWith(Data value, $Res Function(Data) then) =
       _$DataCopyWithImpl<$Res>;
-  $Res call({String id, String? name, String? type, List<String>? roles});
+  $Res call(
+      {String id,
+      String? name,
+      String? type,
+      String? image,
+      List<String>? roles});
 }
 
 /// @nodoc
@@ -130,6 +141,7 @@ class _$DataCopyWithImpl<$Res> extends _$ChannelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? type = freezed,
+    Object? image = freezed,
     Object? roles = freezed,
   }) {
     return _then(Data(
@@ -145,6 +157,10 @@ class _$DataCopyWithImpl<$Res> extends _$ChannelCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as String?,
+      image: image == freezed
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
+              as String?,
       roles: roles == freezed
           ? _value.roles
           : roles // ignore: cast_nullable_to_non_nullable
@@ -156,7 +172,8 @@ class _$DataCopyWithImpl<$Res> extends _$ChannelCopyWithImpl<$Res>
 /// @nodoc
 
 class _$Data with DiagnosticableTreeMixin implements Data {
-  const _$Data({required this.id, this.name, this.type, this.roles});
+  const _$Data(
+      {required this.id, this.name, this.type, this.image, this.roles});
 
   @override
   final String id;
@@ -165,11 +182,13 @@ class _$Data with DiagnosticableTreeMixin implements Data {
   @override
   final String? type;
   @override
+  final String? image;
+  @override
   final List<String>? roles;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Channel(id: $id, name: $name, type: $type, roles: $roles)';
+    return 'Channel(id: $id, name: $name, type: $type, image: $image, roles: $roles)';
   }
 
   @override
@@ -180,6 +199,7 @@ class _$Data with DiagnosticableTreeMixin implements Data {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('name', name))
       ..add(DiagnosticsProperty('type', type))
+      ..add(DiagnosticsProperty('image', image))
       ..add(DiagnosticsProperty('roles', roles));
   }
 
@@ -191,6 +211,7 @@ class _$Data with DiagnosticableTreeMixin implements Data {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.type, type) &&
+            const DeepCollectionEquality().equals(other.image, image) &&
             const DeepCollectionEquality().equals(other.roles, roles));
   }
 
@@ -200,6 +221,7 @@ class _$Data with DiagnosticableTreeMixin implements Data {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(type),
+      const DeepCollectionEquality().hash(image),
       const DeepCollectionEquality().hash(roles));
 
   @JsonKey(ignore: true)
@@ -210,38 +232,39 @@ class _$Data with DiagnosticableTreeMixin implements Data {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String? name, String? type, List<String>? roles)
+    TResult Function(String id, String? name, String? type, String? image,
+            List<String>? roles)
         $default, {
     required TResult Function() empty,
     required TResult Function(String? message) error,
   }) {
-    return $default(id, name, type, roles);
+    return $default(id, name, type, image, roles);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(
-            String id, String? name, String? type, List<String>? roles)?
+    TResult Function(String id, String? name, String? type, String? image,
+            List<String>? roles)?
         $default, {
     TResult Function()? empty,
     TResult Function(String? message)? error,
   }) {
-    return $default?.call(id, name, type, roles);
+    return $default?.call(id, name, type, image, roles);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            String id, String? name, String? type, List<String>? roles)?
+    TResult Function(String id, String? name, String? type, String? image,
+            List<String>? roles)?
         $default, {
     TResult Function()? empty,
     TResult Function(String? message)? error,
     required TResult orElse(),
   }) {
     if ($default != null) {
-      return $default(id, name, type, roles);
+      return $default(id, name, type, image, roles);
     }
     return orElse();
   }
@@ -286,11 +309,13 @@ abstract class Data implements Channel {
       {required String id,
       String? name,
       String? type,
+      String? image,
       List<String>? roles}) = _$Data;
 
   String get id;
   String? get name;
   String? get type;
+  String? get image;
   List<String>? get roles;
   @JsonKey(ignore: true)
   $DataCopyWith<Data> get copyWith => throw _privateConstructorUsedError;
@@ -340,7 +365,8 @@ class _$Empty with DiagnosticableTreeMixin implements Empty {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String? name, String? type, List<String>? roles)
+    TResult Function(String id, String? name, String? type, String? image,
+            List<String>? roles)
         $default, {
     required TResult Function() empty,
     required TResult Function(String? message) error,
@@ -351,8 +377,8 @@ class _$Empty with DiagnosticableTreeMixin implements Empty {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(
-            String id, String? name, String? type, List<String>? roles)?
+    TResult Function(String id, String? name, String? type, String? image,
+            List<String>? roles)?
         $default, {
     TResult Function()? empty,
     TResult Function(String? message)? error,
@@ -363,8 +389,8 @@ class _$Empty with DiagnosticableTreeMixin implements Empty {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            String id, String? name, String? type, List<String>? roles)?
+    TResult Function(String id, String? name, String? type, String? image,
+            List<String>? roles)?
         $default, {
     TResult Function()? empty,
     TResult Function(String? message)? error,
@@ -487,7 +513,8 @@ class _$ErrorDetails with DiagnosticableTreeMixin implements ErrorDetails {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>(
-    TResult Function(String id, String? name, String? type, List<String>? roles)
+    TResult Function(String id, String? name, String? type, String? image,
+            List<String>? roles)
         $default, {
     required TResult Function() empty,
     required TResult Function(String? message) error,
@@ -498,8 +525,8 @@ class _$ErrorDetails with DiagnosticableTreeMixin implements ErrorDetails {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>(
-    TResult Function(
-            String id, String? name, String? type, List<String>? roles)?
+    TResult Function(String id, String? name, String? type, String? image,
+            List<String>? roles)?
         $default, {
     TResult Function()? empty,
     TResult Function(String? message)? error,
@@ -510,8 +537,8 @@ class _$ErrorDetails with DiagnosticableTreeMixin implements ErrorDetails {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>(
-    TResult Function(
-            String id, String? name, String? type, List<String>? roles)?
+    TResult Function(String id, String? name, String? type, String? image,
+            List<String>? roles)?
         $default, {
     TResult Function()? empty,
     TResult Function(String? message)? error,

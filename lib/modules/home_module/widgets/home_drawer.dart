@@ -5,11 +5,12 @@ class HomeDrawer extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    List<channel_model.Channel> channels = controller.channels;
-    profile_model.Data profile = controller.profile.value as profile_model.Data;
     return GetBuilder(
         init: controller,
-        builder: (context) {
+        id: 'channels',
+        builder: (HomeController ctrl) {
+          List<channel_model.Channel> channels = ctrl.channels;
+          profile_model.Data profile = ctrl.profile.value as profile_model.Data;
           return Drawer(
             // Add a ListView to the drawer. This ensures the user can scroll
             // through the options in the drawer if there isn't enough vertical
@@ -22,15 +23,34 @@ class HomeDrawer extends GetView<HomeController> {
                   const SizedBox.shrink()
                 else
                   DrawerHeader(
-                    decoration: const BoxDecoration(
-                      color: Colors.blue,
+                    decoration: const BoxDecoration(),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GenerateImageFromFirebaseStorage(
+                          image: profile.avatar,
+                        ),
+                        Text(
+                          profile.nickname!,
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        )
+                      ],
                     ),
-                    child: Text(profile.nickname!),
                   ),
                 ...List.generate(channels.length, (index) {
                   channel_model.Data channel =
                       channels[index] as channel_model.Data;
                   return ListTile(
+                    leading: GenerateImageFromFirebaseStorage(
+                      image: channel.image,
+                      imageSize: 50,
+                      withIcon: const Icon(
+                        Icons.image,
+                        size: 40,
+                      ),
+                    ),
                     title: Text(channel.name!),
                     onTap: () {
                       // Update the state of the app.

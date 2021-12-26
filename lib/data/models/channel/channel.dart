@@ -8,6 +8,7 @@ class Channel with _$Channel {
       {required String id,
       String? name,
       String? type,
+      String? image,
       List<String>? roles}) = Data;
   const factory Channel.empty() = Empty;
   const factory Channel.error([String? message]) = ErrorDetails;

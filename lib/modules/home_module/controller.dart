@@ -47,7 +47,7 @@ class HomeController extends GetxController {
       List<channel_model.Channel> list =
           await _channelRepository.getUserChannel(list: myProfile.channels!);
       channels = list;
-      update();
+      update(["channels"]);
     }
   }
 

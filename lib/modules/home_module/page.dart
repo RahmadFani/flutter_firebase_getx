@@ -3,6 +3,7 @@ import 'package:flutter_getx_starterpack/data/models/channel/channel.dart'
     as channel_model;
 import 'package:flutter_getx_starterpack/data/models/profile/profile.dart'
     as profile_model;
+import 'package:flutter_getx_starterpack/global_widgets/custom_image/generate_image_from_storage.dart';
 import 'package:flutter_getx_starterpack/modules/app_module/controller.dart';
 import 'package:flutter_getx_starterpack/modules/home_module/controller.dart';
 import 'package:flutter_getx_starterpack/modules/home_module/widgets/splash_home.dart';
@@ -40,8 +41,7 @@ class HomePage extends GetView<HomeController> {
     profile_model.Data profile = controller.profile.value as profile_model.Data;
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: const Text('Home')),
-      // ignore: prefer_const_constructors
-      drawer: HomeDrawer(),
+      drawer: const HomeDrawer(),
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
