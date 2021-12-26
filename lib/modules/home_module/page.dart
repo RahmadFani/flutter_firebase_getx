@@ -40,7 +40,8 @@ class HomePage extends GetView<HomeController> {
     profile_model.Data profile = controller.profile.value as profile_model.Data;
     return Scaffold(
       appBar: AppBar(centerTitle: true, title: const Text('Home')),
-      drawer: const HomeDrawer(),
+      // ignore: prefer_const_constructors
+      drawer: HomeDrawer(),
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),

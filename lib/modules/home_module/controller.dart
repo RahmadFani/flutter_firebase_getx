@@ -16,6 +16,11 @@ class HomeController extends GetxController {
         _channelRepository = channelRepository ?? ChannelRepository() {
     _profileSubscribtion =
         _repository.streamUserProfile.listen((event) => getUserProfile(event));
+
+    /// if profile has listen changed
+    profile.listen((prof) {
+      _getUserChannels();
+    });
   }
 
   late final StreamSubscription _profileSubscribtion;
@@ -30,8 +35,7 @@ class HomeController extends GetxController {
       Get.offAndToNamed(Routes.PROFILE_CREATE);
     }
     if (userProfile is profile_model.Data) {
-      profile = userProfile.obs;
-      _getUserChannels();
+      profile.call(userProfile);
       update();
     }
   }
@@ -43,7 +47,7 @@ class HomeController extends GetxController {
       List<channel_model.Channel> list =
           await _channelRepository.getUserChannel(list: myProfile.channels!);
       channels = list;
-      update(['channels']);
+      update();
     }
   }
 
