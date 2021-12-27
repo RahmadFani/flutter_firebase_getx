@@ -53,8 +53,8 @@ class HomeDrawer extends GetView<HomeController> {
                     ),
                     title: Text(channel.name!),
                     onTap: () {
-                      // Update the state of the app.
-                      // ...
+                      Navigator.pop(Get.context!);
+                      ctrl.chooseChannel(channel);
                     },
                   );
                 }),

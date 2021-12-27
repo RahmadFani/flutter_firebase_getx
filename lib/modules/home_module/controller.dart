@@ -29,6 +29,7 @@ class HomeController extends GetxController {
 
   Rx<profile_model.Profile> profile = const profile_model.Profile.empty().obs;
   List<channel_model.Channel> channels = [];
+  Rx<channel_model.Channel> channel = const channel_model.Channel.empty().obs;
 
   void getUserProfile(profile_model.Profile userProfile) async {
     if (userProfile is profile_model.Empty) {
@@ -51,9 +52,21 @@ class HomeController extends GetxController {
     }
   }
 
+  void chooseChannel(channel_model.Channel data) {
+    channel.call(data);
+    update();
+    _getChannelMessages();
+    _getChannelMember();
+  }
+
+  void _getChannelMessages() async {}
+
+  void _getChannelMember() async {}
+
   @override
   void dispose() {
     _profileSubscribtion.cancel();
+    profile.close();
     super.dispose();
   }
 }

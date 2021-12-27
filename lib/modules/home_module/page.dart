@@ -14,6 +14,7 @@ import 'package:lottie/lottie.dart';
 
 part 'widgets/empty_channels_profile.dart';
 part 'widgets/home_drawer.dart';
+part 'widgets/home_drawer_end.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);
@@ -40,8 +41,15 @@ class HomePage extends GetView<HomeController> {
   Widget get _homeBody {
     profile_model.Data profile = controller.profile.value as profile_model.Data;
     return Scaffold(
-      appBar: AppBar(centerTitle: true, title: const Text('Home')),
+      appBar: AppBar(
+          centerTitle: true,
+          title: (controller.channel.value is channel_model.Empty)
+              ? const Text('Home')
+              : Text((controller.channel.value as channel_model.Data).name!)),
       drawer: const HomeDrawer(),
+      endDrawer: (controller.channel.value is channel_model.Empty)
+          ? null
+          : const HomeDrawerEnd(),
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
