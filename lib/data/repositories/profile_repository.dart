@@ -16,6 +16,11 @@ class ProfileRepository {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
+  ///
+  /// [streamUserProfile]
+  ///
+  /// Stream user profile this function will noticed system if user has changed hes data
+  ///
   Stream<Profile> get streamUserProfile {
     String userId = box.read('user_id');
     return _firebaseFirestore.collection('users').doc(userId).snapshots().map(
@@ -23,6 +28,11 @@ class ProfileRepository {
             snapshot.exists ? snapshot.toProfile : const Profile.empty());
   }
 
+  ///
+  /// [getUserProfile]
+  ///
+  /// Get User Profile
+  ///
   Future<Profile> get getUserProfile async {
     try {
       String userId = box.read('user_id');
@@ -35,13 +45,18 @@ class ProfileRepository {
     }
   }
 
+  ///
+  /// [saveUserProfile]
+  ///
+  /// Function save profile user
+  ///
   Future<void> saveUserProfile({required String nickname, File? avatar}) async {
     try {
       String userId = box.read('user_id');
       DocumentReference user =
           _firebaseFirestore.collection('users').doc(userId);
 
-      user.set({"nickname": nickname});
+      user.set({"nickname": nickname}, SetOptions(merge: true));
 
       if (avatar != null) {
         Directory appDocDir = await getApplicationDocumentsDirectory();
@@ -63,6 +78,11 @@ class ProfileRepository {
   }
 }
 
+///
+/// Extension [DocumentSnapshot]
+///
+/// convert [Map] to Model [Dart]
+///
 extension on DocumentSnapshot {
   Map<String, dynamic> get json {
     return data() as Map<String, dynamic>;

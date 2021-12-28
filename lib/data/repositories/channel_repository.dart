@@ -13,8 +13,15 @@ class ChannelRepository {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
+  ///
+  /// [getUserChannel]
+  ///
+  /// Get all [User] channel from firestore
+  ///
   Future<List<Channel>> getUserChannel({required List<String> list}) async {
     final channelCollection = _firebaseFirestore.collection('channels');
+
+    /// [FieldPath.documentId] is Document ID from [channels] collection
     final query = await channelCollection
         .where(FieldPath.documentId, whereIn: list)
         .get();
@@ -23,6 +30,25 @@ class ChannelRepository {
     return docs.map((e) => e.doc.toChannel).toList();
   }
 
+  ///
+  /// [getChannelMember]
+  ///
+  /// Get all member channel from firestore
+  ///
+  Future<void> getChannelMember() async {}
+
+  ///
+  /// [getChannelRoles]
+  ///
+  /// Get all roles channel from firestore
+  ///
+  Future<void> getChannelRoles() async {}
+
+  ///
+  /// [createChannel]
+  ///
+  /// Create channel firestore
+  ///
   Future<void> createChannel({
     required String name,
     required String type,
@@ -45,6 +71,19 @@ class ChannelRepository {
         'can': [0]
       });
 
+      ///
+      /// [FieldValue]
+      ///
+      /// serverTimestamp => this will automatic get Time now from server
+      /// arrayUnion => will get FieldValue from Field that we choose and push data
+      /// arrayUnion Example
+      /// 'roles': FieldValue.arrayUnion(['super-admin'])
+      /// Firestore will automatic get Values from Field [roles] and push data ['super-admin'] to Values
+      /// Before
+      /// Values => ['Member', 'Moderator']
+      /// result
+      /// Values => ['Member', 'Moderator', 'super-admin']
+      ///
       channels.collection('members').doc(userId).set({
         'joining_at': FieldValue.serverTimestamp(),
         'roles': FieldValue.arrayUnion(['super-admin'])
@@ -68,6 +107,11 @@ class ChannelRepository {
   }
 }
 
+///
+/// extension [DocumentSnapshot]
+///
+/// this extension convert data() [json] to model [Dart]
+///
 extension on DocumentSnapshot {
   Map<String, dynamic> get json {
     return data() as Map<String, dynamic>;

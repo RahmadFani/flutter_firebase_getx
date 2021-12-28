@@ -11,6 +11,11 @@ class AuthRepository {
 
   final box = get_storage.GetStorage();
 
+  ///
+  /// Stream<User> get [user]
+  ///
+  /// if this function started it will noticed system "is user is SignIn/Signout"
+  ///
   Stream<User> get user {
     return _firebaseAuth.authStateChanges().map((firebaseUser) {
       User user =
@@ -22,6 +27,11 @@ class AuthRepository {
     });
   }
 
+  ///
+  /// [loginWithEmailAndPassword]
+  ///
+  /// Function Login with email and password
+  ///
   Future<void> loginWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
@@ -32,6 +42,11 @@ class AuthRepository {
     }
   }
 
+  ///
+  /// [createUserWithEmailAndPassword]
+  ///
+  /// Function Creating new account with email and password
+  ///
   Future<void> createUserWithEmailAndPassword(
       {required String email, required String password}) async {
     try {
@@ -48,11 +63,21 @@ class AuthRepository {
     }
   }
 
+  ///
+  /// Stream<User> get [loggedOut]
+  ///
+  /// Function For user is loggedOut
+  ///
   Future<void> get loggedOut async {
     await _firebaseAuth.signOut();
   }
 }
 
+///
+/// firebase_auth.User [User]
+///
+/// convert [Map] to Model [Dart]
+///
 extension on firebase_auth.User {
   User get toUser {
     return User(id: uid, email: email, name: displayName, photo: photoURL);
