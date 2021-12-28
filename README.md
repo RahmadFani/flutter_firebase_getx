@@ -1,4 +1,4 @@
-# flutter_getx_starterpack
+# [Flutter] Example aplication flutter with Firebase
 
 A new Flutter project.
 
