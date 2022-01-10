@@ -6,6 +6,7 @@ import 'package:flutter_getx_starterpack/data/models/profile/profile.dart'
 import 'package:flutter_getx_starterpack/global_widgets/custom_image/generate_image_from_storage.dart';
 import 'package:flutter_getx_starterpack/modules/app_module/controller.dart';
 import 'package:flutter_getx_starterpack/modules/home_module/controller.dart';
+import 'package:flutter_getx_starterpack/modules/home_module/selected_channel.dart';
 import 'package:flutter_getx_starterpack/modules/home_module/widgets/splash_home.dart';
 import 'package:flutter_getx_starterpack/routes/app_pages.dart';
 import 'package:flutter_getx_starterpack/values/text_style.dart';
@@ -39,7 +40,6 @@ class HomePage extends GetView<HomeController> {
   }
 
   Widget get _homeBody {
-    profile_model.Data profile = controller.profile.value as profile_model.Data;
     return Scaffold(
       appBar: AppBar(
           centerTitle: true,
@@ -53,7 +53,11 @@ class HomePage extends GetView<HomeController> {
       body: SafeArea(
         child: Container(
           constraints: const BoxConstraints.expand(),
-          child: Center(child: Text(profile.nickname!)),
+          child: (controller.channel.value is channel_model.Empty)
+              ? const Center(
+                  child: Text('Unselected channel'),
+                )
+              : const SelectedChannelHome(),
         ),
       ),
     );

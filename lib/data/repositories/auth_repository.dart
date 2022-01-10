@@ -64,7 +64,7 @@ class AuthRepository {
   }
 
   ///
-  /// Stream<User> get [loggedOut]
+  /// [loggedOut]
   ///
   /// Function For user is loggedOut
   ///
